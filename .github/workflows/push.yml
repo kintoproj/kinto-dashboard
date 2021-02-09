@@ -1,7 +1,8 @@
 name: Push to Docker Hub
 
 on:
-  push
+  push:
+    branches: [ main ]
 
 jobs:
   build:
