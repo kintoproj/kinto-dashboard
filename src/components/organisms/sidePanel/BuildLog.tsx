@@ -201,7 +201,6 @@ export default ({ release, service }: Props) => {
                       ?.getHost()}</a>\n\n`
                   : `kinto::html::🔗 Private API access via <a href="http://${service.getName()}" onclick="return false;">http://${service.getName()}</a>\n\n`
               }` +
-              'kinto::html::Need Help? <a href="https://discordapp.com/invite/E2CMjKP" target="_blank">Chat with us on Discord</a>' +
               '\n\n\n',
           });
         } else if (blockType === Block.Type.JAMSTACK) {
@@ -215,7 +214,6 @@ export default ({ release, service }: Props) => {
                 ?.getHost()}" target="_blank">https://${release
                 .getRunconfig()
                 ?.getHost()}</a>\n\n` +
-              'kinto::html::Need Help? <a href="https://discordapp.com/invite/E2CMjKP" target="_blank">Chat with us on Discord</a>' +
               '\n\n\n',
           });
         } else if (blockType === Block.Type.CATALOG) {
@@ -226,7 +224,6 @@ export default ({ release, service }: Props) => {
               `${info('✅ Deployment successful.\n\n')}` +
               '\n\n' +
               'kinto::catalogaccess::\n\n' +
-              'kinto::html::Need Help? <a href="https://discordapp.com/invite/E2CMjKP" target="_blank">Chat with us on Discord</a>' +
               '\n\n\n',
           });
         } else {
@@ -236,7 +233,6 @@ export default ({ release, service }: Props) => {
               '\n' +
               `${info('✅ Deployment successful.\n\n')}` +
               '\n\n' +
-              'kinto::html::Need Help? <a href="https://discordapp.com/invite/E2CMjKP" target="_blank">Chat with us on Discord</a>' +
               '\n\n\n',
           });
         }
@@ -247,7 +243,6 @@ export default ({ release, service }: Props) => {
             '\n\n' +
             `${info('✅ Deployment was successful.\n\n')}` +
             'kinto::outdated::\n\n' +
-            'kinto::html::Need Help? <a href="https://discordapp.com/invite/E2CMjKP" target="_blank">Chat with us on Discord</a>' +
             '\n\n\n',
         });
       }
@@ -255,10 +250,7 @@ export default ({ release, service }: Props) => {
       // Do not append the hint on FE. they are all handled on BE now
       localDispatch({
         type: 'APPEND_INFO',
-        log:
-          '\n' +
-          'kinto::html::Need Help? <a href="https://discordapp.com/invite/E2CMjKP" target="_blank">Chat with us on Discord</a>' +
-          '\n\n\n',
+        log: '\n\n\n\n',
       });
     } else {
       // should not happen
