@@ -351,9 +351,6 @@ const ServiceActivity = ({ service, releaseIdToAction, ...props }: Props) => {
         key={release.getId()}
         hover={true}
         onClick={() => {
-          // catalog won't open the logs
-          const serviceType =
-            release?.getRunconfig()?.getType() || Block.Type.NOT_SET;
           if (releaseState === Status.State.REVIEW_DEPLOY) {
             dispatch(
               showPanel({
