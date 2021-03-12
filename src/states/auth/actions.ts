@@ -14,6 +14,7 @@ import { PATH_CREATE_ENV, PATH_MAINTENANCE } from 'libraries/constants';
 import { getEnvironments } from 'libraries/grpc/environment';
 import { getKintoConfig, syncTime } from 'libraries/grpc/app';
 import moment from 'moment';
+import { CoreMethod } from '../../libraries/grpc/common';
 
 export const ACTION_ENV_LOGIN = 'ENV_LOGIN';
 export const ACTION_UPDATE_ENV_LIST = 'UPDATE_ENV_LIST';
@@ -93,12 +94,12 @@ export const doSyncTime = (
  * Get the list of environments before everything else
  */
 export const doInitBackgroundLoad = (
-  coreClient: KintoCoreServiceClient
+  grpcWrapper: <T, P>(grpc: CoreMethod<T, P>, params: P) => Promise<T>
 ): ThunkAction<Promise<void>, RootState, {}, AnyAction> => async (
   dispatch: ThunkDispatch<{}, {}, AnyAction>
 ): Promise<void> => {
   try {
-    const envs = await getEnvironments(coreClient);
+    const envs = await grpcWrapper(getEnvironments, {});
     const envList = envs.getItemsList();
     // If no environment, force him to create one
     // FIXME: debug
@@ -109,7 +110,7 @@ export const doInitBackgroundLoad = (
       return;
     }
 
-    const config = await getKintoConfig(coreClient, '', {});
+    const config = await grpcWrapper(getKintoConfig, {});
     dispatch(updateKintoConfig(config!));
 
     dispatch(setInitialLoading(false));
