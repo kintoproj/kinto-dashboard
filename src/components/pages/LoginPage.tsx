@@ -33,10 +33,7 @@ interface LoginProps {
   secret: string;
 }
 
-/**
- * This page will be revamped soon. Once we have a proper custom error page it should not be named maintenance anymore
- */
-const Maintenance = () => {
+const LoginPage = () => {
   const dispatch = useDispatch();
   const [loggedIn, setLoggedIn] = useState(false);
   return (
@@ -100,4 +97,4 @@ const Maintenance = () => {
   );
 };
 
-export default Maintenance;
+export default LoginPage;
