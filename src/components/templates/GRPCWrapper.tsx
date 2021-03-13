@@ -56,6 +56,7 @@ export const useGRPCStream = <T, P>(
   earlyExit?: () => boolean
 ) => {
   const clients = useGRPCClients();
+  const { token } = useAuthState();
   let retryCount = 0;
 
   useEffect(() => {
@@ -80,8 +81,7 @@ export const useGRPCStream = <T, P>(
           }
           const pStream = stream;
 
-          // TODO: leave token as empty first
-          stream = ws(clients.kkcClient!, '', params, {
+          stream = ws(clients.kkcClient!, token!, params, {
             onData: (msg) => {
               callbacks.onData(msg);
             },
@@ -108,7 +108,7 @@ export const useGRPCStream = <T, P>(
       }
     };
 
-    stream = ws(clients.kkcClient!, '', params, {
+    stream = ws(clients.kkcClient!, token!, params, {
       onData: (message) => {
         callbacks.onData(message);
       },
