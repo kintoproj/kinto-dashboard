@@ -20,6 +20,7 @@ export const ACTION_ENV_LOGIN = 'ENV_LOGIN';
 export const ACTION_UPDATE_ENV_LIST = 'UPDATE_ENV_LIST';
 export const ACTION_UPDATE_ENV_NAME = 'UPDATE_ENV_NAME';
 export const ACTION_DELETE_ENV = 'DELETE_ENV';
+export const ACTION_UPDATE_TOKEN = 'UPDATE_TOKEN';
 
 export interface EnvLoginAction {
   type: typeof ACTION_ENV_LOGIN;
@@ -42,6 +43,11 @@ export interface DeleteEnvAction {
   envId: string;
 }
 
+export interface UpdateTokenAction {
+  type: typeof ACTION_UPDATE_TOKEN;
+  token: string;
+}
+
 export const envLogin = (envId: string): EnvLoginAction => {
   return {
     type: ACTION_ENV_LOGIN,
@@ -61,6 +67,13 @@ export const updateEnvName = (
   type: ACTION_UPDATE_ENV_NAME,
   envId,
   envName,
+});
+
+export const updateToken = (
+  token: string
+): UpdateTokenAction => ({
+  type: ACTION_UPDATE_TOKEN,
+  token
 });
 
 export const deleteEnv = (envId: string): DeleteEnvAction => ({
@@ -163,4 +176,5 @@ export type AuthActionsTypes =
   | EnvLoginAction
   | UpdateEnvNameAction
   | DeleteEnvAction
-  | UpdateEnvListAction;
+  | UpdateEnvListAction
+  | UpdateTokenAction;

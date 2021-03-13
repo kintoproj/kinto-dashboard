@@ -41,7 +41,7 @@ export const invokeGRPC = <T, R>(
   context: KintoCoreServiceClient
 ): Promise<R | null> => {
   const headers = new grpc.Metadata();
-  headers.set('Authorization', `Bearer ${token}`);
+  headers.set('Authorization', `${token}`);
 
   return new Promise((resolve, reject) => {
     call.bind(context)(req, headers, (err, message) => {
