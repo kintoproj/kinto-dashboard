@@ -19,7 +19,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: false
-          tags: kintohub/kinto-core:latest
+          tags: kintohub/kinto-dashboard:latest
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
